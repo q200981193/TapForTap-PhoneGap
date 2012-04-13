@@ -78,6 +78,92 @@ document.addEventListener('deviceready', function() {
 
 Congratulations, you are done. We said it was easy!
 
+## API Documentation
+The JavaScript API lets you create, position, and remove Tap for Tap ad views. You
+can also pass in optional info about your users to help us with targetting. Please
+make sure your privacy policy allows this before giving us their personal information.
+
+#### setDefaultAppId(appId)
+Use this method to set your app ID once when your app launches. All other
+API calls will use this app ID.
+
+Usage:
+
+    TapForTap.setDefaultAppId('my-app-id');
+
+#### checkIn([appId])
+All of your apps should check in once at startup. This lets us know when Tap for Tap
+has been successfully integrated into an app and in the future will allow us to track
+installs.
+
+The `appId` parameter is not required if you set a default app ID.
+
+Usage:
+
+    TapForTap.checkIn();
+
+or
+
+    TapForTap.checkIn('my-app-id');
+
+#### createAdView([options])
+Create and display an ad view.
+
+The options object itself is optional, and supports these optional properties:
+
+  * **appId**:  specifies the app ID.
+  * **x**: the x coordinate of the origin of the ad (only supported on iOS)
+  * **y**: the y coordinate of the origin of the ad (only supported on iOS)
+  * **gender**: the user's gender, `'male'` or `'female'`
+  * **age**: an integer specifying the user's age
+  * **location**: an object with `latitude` and `longitude` properties
+
+Usage:
+
+```
+// Create an ad using the default app ID
+TapForTap.createAdView();
+
+// Create an ad using an explicit app ID
+TapForTap.createAdView({ appId: 'my-app-id' });
+
+// Create an ad at the top of the screen (only supported on iOS)
+TapForTap.createAdView({ y: 0 });
+
+// Pass in optional info about the user
+TapForTap.createAdView({
+  gender: 'female',
+  age: 21,
+  location: { latitude: '123.4567890', longitude: '45.67890' }
+});
+```
+
+#### loadAds()
+Loads and displays Tap for Tap ads. Call this once after creating the ad view.
+
+Usage:
+
+    TapForTap.loadAds();
+
+#### moveAdView([options])
+This animates the ad view to a new location on screen. `options` is optional
+and can contain the following properties:
+
+  * **x**: the x coordinate of the origin of the ad (only supported on iOS)
+  * **y**: the y coordinate of the origin of the ad (only supported on iOS)
+
+Usage:
+
+    // Move the ad to the top of the screen (only supported on iOS)
+    TapForTap.moveAdView({ y: 0 });
+
+#### removeAdView()
+Removes the ad view from the screen and stops loading ads.
+
+Usage:
+
+    TapForTap.removeAdView();
+
 ## Support
 Things don't always go according to plan. If you hit a snag somewhere and need a
 hand don't hesitate to get in touch with us at
