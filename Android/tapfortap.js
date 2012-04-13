@@ -3,42 +3,44 @@
 
 !function () {
 
-  var exec = (function() {
+  var cordova = (function() {
     if (typeof Cordova !== 'undefined') {
-      return Cordova.exec;
+      return Cordova;
     }
     if (typeof PhoneGap !== 'undefined') {
-      return PhoneGap.exec;
+      return PhoneGap;
     }
-    return function() {
-      alert('PhoneGap not found');
+    return {
+      exec: function() {
+        alert('PhoneGap not found');
+      }
     }
   }());
 
   window.TapForTap = {
 
     setDefaultAppId: function(appId, successCallback, failureCallback) {
-      return exec(successCallback, failureCallback, 'TapForTap', 'setDefaultAppId', [appId]);
+      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'setDefaultAppId', [appId]);
     }
 
   , checkIn: function(appId, successCallback, failureCallback) {
-      return exec(successCallback, failureCallback, 'TapForTap', 'checkIn', appId ? [appId] : []);
+      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'checkIn', appId ? [appId] : []);
     }
 
   , createAdView: function(options, successCallback, failureCallback) {
-      return exec(successCallback, failureCallback, 'TapForTap', 'createAdView', [options]);
+      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'createAdView', [options]);
     }
 
   , loadAds: function(successCallback, failureCallback) {
-      return exec(successCallback, failureCallback, 'TapForTap', 'loadAds', []);
+      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'loadAds', []);
     }
 
   , moveAdView: function(successCallback, failureCallback) {
-      return exec(successCallback, failureCallback, 'TapForTap', 'moveAdView', []);
+      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'moveAdView', []);
     }
 
   , removeAdView: function(options, successCallback, failureCallback) {
-      return exec(successCallback, failureCallback, 'TapForTap', 'removeAdView', [options]);
+      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'removeAdView', [options]);
     }
 
   };
