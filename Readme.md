@@ -28,7 +28,9 @@ Put `TapForTap.jar` from step 1 to your `libs` folder as well.
 
 4. Open `res/xml/plugins.xml` and add this line:
 
-    &lt;plugin name="TapForTap" value="com.tapfortap.phonegap.TapForTapPlugin"/>
+```
+<plugin name="TapForTap" value="com.tapfortap.phonegap.TapForTapPlugin"/>
+```
 
 That's it! Unless you're integrating Tap for Tap into an iOS app as well you
 can skip down to **Usage**.
