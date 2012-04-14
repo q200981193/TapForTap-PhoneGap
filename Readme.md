@@ -48,7 +48,8 @@ or `cordova-1.x.x.js`.
 
 4. Under `Supporting Files` open `PhoneGap.plist` or `Cordova.plist` and
 to the `Plugins` dictionary add the key `TapForTap` with value
-`TapForTapPhoneGapPlugin`.
+`TapForTapPhoneGapPlugin`. Also add the following 2 items to the
+`ExternalHosts` array: `api.tapfortap.com` and `developer.tapfortap.com`.
 
 That's it! Now you're ready to use Tap for Tap in your app.
 
