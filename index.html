@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Tap for Tap PhoneGap Plugins by betastreet</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Tap for Tap PhoneGap Plugins</h1>
+        <h2>Welcome PhoneGapping Tappers!</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/betastreet/TapForTap-PhoneGap/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/betastreet/TapForTap-PhoneGap/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/betastreet/TapForTap-PhoneGap" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>Tap for Tap PhoneGap Plugins</h1>
+
+<p>Want to use Tap for Tap with PhoneGap? We got you covered on Android and iOS.</p>
+
+<h2>Installation</h2>
+
+<p>If you don't have the plugins yet then head over to the <a href="https://github.com/betastreet/TapForTap-PhoneGap/downloads">downloads page</a> and
+get yourself a zip file.</p>
+
+<p>Installing the Tap for Tap plugin is super easy. We'll guide you through it.
+This isn't a PhoneGap tutorial so we assume that you have a PhoneGap project
+(or projects) already set up and working.</p>
+
+<p>These instructions are for recent versions of PhoneGap, i.e. v1.5.0 and up. If
+you're using something older and the plugins don't work let us know and we'll
+see what we can do for you.</p>
+
+<h3>Android</h3>
+
+<ol>
+<li><p><a href="http://developer.tapfortap.com/sdk">Download our Android SDK</a> and find
+the file <code>TapForTap.jar</code> included therein. You'll need this file in the next
+step.</p></li>
+<li><p>Peek inside the <code>Android</code> folder and put <code>TapForTapPlugin.jar</code> in your
+project's <code>libs</code> folder, alongside <code>phonegap-1.x.x.jar</code> or <code>cordova-1.x.x.jar</code>.
+Put <code>TapForTap.jar</code> from step 1 to your <code>libs</code> folder as well.</p></li>
+<li><p>Now go ahead and put <code>tapfortap.js</code> in <code>assets/www</code> alongside
+<code>phonegap-1.x.x.js</code> or <code>cordova-1.x.x.js</code>.</p></li>
+<li><p>Open <code>res/xml/plugins.xml</code> and add this line:</p></li>
+</ol><pre><code>&lt;plugin name="TapForTap" value="com.tapfortap.phonegap.TapForTapPlugin"/&gt;
+</code></pre>
+
+<p>That's it! Unless you're integrating Tap for Tap into an iOS app as well you
+can skip down to <strong>Usage</strong>.</p>
+
+<h3>iOS</h3>
+
+<ol>
+<li><p><a href="http://developer.tapfortap.com/sdk">Download our iOS SDK</a> and find the
+folder <code>TapForTap</code> included therein. Add it to your project by following
+step 1 of the iOS instructions on the SDK download page.</p></li>
+<li><p>Add <code>TapForTapPhoneGapPlugin.h</code> and <code>TapForTapPhoneGapPlugin.m</code> to your
+project in the <code>Plugins</code> folder provided by PhoneGap.</p></li>
+<li><p>Put <code>tapfortap.js</code> in your <code>www</code> folder, alongside <code>phonegap-1.x.x.js</code>
+or <code>cordova-1.x.x.js</code>.</p></li>
+<li><p>Under <code>Supporting Files</code> open <code>PhoneGap.plist</code> or <code>Cordova.plist</code> and
+to the <code>Plugins</code> dictionary add the key <code>TapForTap</code> with value
+<code>TapForTapPhoneGapPlugin</code>. Also add the following 2 items to the
+<code>ExternalHosts</code> array: <code>api.tapfortap.com</code> and <code>developer.tapfortap.com</code>.</p></li>
+</ol><p>That's it! Now you're ready to use Tap for Tap in your app.</p>
+
+<h2>Usage</h2>
+
+<p>First up include the Tap for Tap JavaScript module, this goes directly after
+the similar line that includes <code>phonegap/cordova-1.x.x.js</code>:</p>
+
+<pre><code>&lt;script type="text/javascript" charset="utf-8" src="tapfortap.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Second, and lastly, create an ad view and tell it to load ads, like so:</p>
+
+<pre><code>document.addEventListener('deviceready', function() {
+
+  var appId = '&lt;YOUR APP ID&gt;';
+  TapForTap.checkIn(appId);
+  TapForTap.createAdView({ appId: appId }, function() {
+    TapForTap.loadAds(function() {
+      // successfully loaded ads
+    }, function(e) {
+      console.error('error loading ads: ', e);
+    });
+  }, function(e) {
+    console.error('error creating ad view: ', e);
+  });
+
+}, false);
+</code></pre>
+
+<p>Congratulations, you are done. We said it was easy!</p>
+
+<h2>API Documentation</h2>
+
+<p>The JavaScript API lets you create, position, and remove Tap for Tap ad views. You
+can also pass in optional info about your users to help us with targetting. Please
+make sure your privacy policy allows this before giving us their personal information.</p>
+
+<h4>setDefaultAppId(appId)</h4>
+
+<p>Use this method to set your app ID once when your app launches. All other
+API calls will use this app ID.</p>
+
+<p>Usage:</p>
+
+<pre><code>TapForTap.setDefaultAppId('my-app-id');
+</code></pre>
+
+<h4>checkIn([appId])</h4>
+
+<p>All of your apps should check in once at startup. This lets us know when Tap for Tap
+has been successfully integrated into an app and in the future will allow us to track
+installs.</p>
+
+<p>The <code>appId</code> parameter is not required if you set a default app ID.</p>
+
+<p>Usage:</p>
+
+<pre><code>TapForTap.checkIn();
+</code></pre>
+
+<p>or</p>
+
+<pre><code>TapForTap.checkIn('my-app-id');
+</code></pre>
+
+<h4>createAdView([options])</h4>
+
+<p>Create and display an ad view.</p>
+
+<p>The options object itself is optional, and supports these optional properties:</p>
+
+<ul>
+<li>
+<strong>appId</strong>:  specifies the app ID.</li>
+<li>
+<strong>x</strong>: the x coordinate of the origin of the ad (only supported on iOS)</li>
+<li>
+<strong>y</strong>: the y coordinate of the origin of the ad (only supported on iOS)</li>
+<li>
+<strong>gender</strong>: the user's gender, <code>'male'</code> or <code>'female'</code>
+</li>
+<li>
+<strong>age</strong>: an integer specifying the user's age</li>
+<li>
+<strong>location</strong>: an object with <code>latitude</code> and <code>longitude</code> properties</li>
+</ul><p>Usage:</p>
+
+<pre><code>// Create an ad using the default app ID
+TapForTap.createAdView();
+
+// Create an ad using an explicit app ID
+TapForTap.createAdView({ appId: 'my-app-id' });
+
+// Create an ad at the top of the screen (only supported on iOS)
+TapForTap.createAdView({ y: 0 });
+
+// Pass in optional info about the user
+TapForTap.createAdView({
+  gender: 'female',
+  age: 21,
+  location: { latitude: '123.4567890', longitude: '45.67890' }
+});
+</code></pre>
+
+<h4>loadAds()</h4>
+
+<p>Loads and displays Tap for Tap ads. Call this once after creating the ad view.</p>
+
+<p>Usage:</p>
+
+<pre><code>TapForTap.loadAds();
+</code></pre>
+
+<h4>moveAdView([options])</h4>
+
+<p>This animates the ad view to a new location on screen. <code>options</code> is optional
+and can contain the following properties:</p>
+
+<ul>
+<li>
+<strong>x</strong>: the x coordinate of the origin of the ad (only supported on iOS)</li>
+<li>
+<strong>y</strong>: the y coordinate of the origin of the ad (only supported on iOS)</li>
+</ul><p>Usage:</p>
+
+<pre><code>// Move the ad to the top of the screen (only supported on iOS)
+TapForTap.moveAdView({ y: 0 });
+</code></pre>
+
+<h4>removeAdView()</h4>
+
+<p>Removes the ad view from the screen and stops loading ads.</p>
+
+<p>Usage:</p>
+
+<pre><code>TapForTap.removeAdView();
+</code></pre>
+
+<h2>Support</h2>
+
+<p>Things don't always go according to plan. If you hit a snag somewhere and need a
+hand don't hesitate to get in touch with us at
+<a href="mailto:support@tapfortap.com">support@tapfortap.com</a> or on Twitter where we go
+by the swanky handle <a href="https://twitter.com/tapfortap">@tapfortap</a>.</p>
+
+<h2>License</h2>
+
+<p>Licensed under the terms of the MIT License.</p>
+
+<p>Copyright © 2012 Beta Street</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
