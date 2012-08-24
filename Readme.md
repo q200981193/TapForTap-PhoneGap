@@ -179,4 +179,4 @@ by the swanky handle [@tapfortap](https://twitter.com/tapfortap).
 
 Licensed under the terms of the MIT License.
 
-Copyright &copy; 2012 Beta Street
+Copyright &copy; 2012 Tap for Tap
