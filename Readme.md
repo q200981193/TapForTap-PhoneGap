@@ -23,10 +23,12 @@ step.
 project's `libs` folder, alongside `phonegap-1.x.x.jar` or `cordova-1.x.x.jar`.
 Put `TapForTap.jar` from step 1 to your `libs` folder as well.
 
-3. Now go ahead and put `tapfortap.js` in `assets/www` alongside
+3. Now add the JAR files to your project by following [Step 1 of our SDK instructions](http://developer.tapfortap.com/sdk). Basically you just right-click the JAR files and choose "Add as to Build Path".
+
+4. Now go ahead and put `tapfortap.js` in `assets/www` alongside
 `phonegap-1.x.x.js` or `cordova-1.x.x.js`.
 
-4. Open `res/xml/plugins.xml` and add this line:
+5. Open `res/xml/plugins.xml` and add this line:
 
 ```
 <plugin name="TapForTap" value="com.tapfortap.phonegap.TapForTapPlugin"/>
