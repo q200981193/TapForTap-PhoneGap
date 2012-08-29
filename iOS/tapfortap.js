@@ -4,6 +4,9 @@
 !function () {
 
   var cordova = (function() {
+    if (typeof cordova !== 'undefined') {
+      return cordova;
+    }
     if (typeof Cordova !== 'undefined') {
       return Cordova;
     }
