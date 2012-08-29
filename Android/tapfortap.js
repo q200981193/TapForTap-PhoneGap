@@ -1,46 +1,47 @@
 // Tap for Tap PhoneGap plugin
-// Copyright 2012 Beta Street
+// Copyright 2012 Tap for Tap
 
 !function () {
 
-  var cordova = (function() {
+  var exec = (function() {
+    if (typeof cordova !== 'undefined') {
+      return cordova.exec;
+    }
     if (typeof Cordova !== 'undefined') {
-      return Cordova;
+      return Cordova.exec;
     }
     if (typeof PhoneGap !== 'undefined') {
-      return PhoneGap;
+      return PhoneGap.exec;
     }
-    return {
-      exec: function() {
-        alert('PhoneGap not found');
-      }
+    return function() {
+      alert('PhoneGap not found');
     }
   }());
 
   window.TapForTap = {
 
     setDefaultAppId: function(appId, successCallback, failureCallback) {
-      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'setDefaultAppId', [appId]);
+      return exec(successCallback, failureCallback, 'TapForTap', 'setDefaultAppId', [appId]);
     }
 
   , checkIn: function(appId, successCallback, failureCallback) {
-      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'checkIn', appId ? [appId] : []);
+      return exec(successCallback, failureCallback, 'TapForTap', 'checkIn', appId ? [appId] : []);
     }
 
   , createAdView: function(options, successCallback, failureCallback) {
-      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'createAdView', [options]);
+      return exec(successCallback, failureCallback, 'TapForTap', 'createAdView', [options]);
     }
 
   , loadAds: function(successCallback, failureCallback) {
-      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'loadAds', []);
+      return exec(successCallback, failureCallback, 'TapForTap', 'loadAds', []);
     }
 
   , moveAdView: function(successCallback, failureCallback) {
-      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'moveAdView', []);
+      return exec(successCallback, failureCallback, 'TapForTap', 'moveAdView', []);
     }
 
   , removeAdView: function(options, successCallback, failureCallback) {
-      return cordova.exec(successCallback, failureCallback, 'TapForTap', 'removeAdView', [options]);
+      return exec(successCallback, failureCallback, 'TapForTap', 'removeAdView', [options]);
     }
 
   };
