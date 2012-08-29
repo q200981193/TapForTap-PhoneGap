@@ -4,7 +4,7 @@ Want to use Tap for Tap with PhoneGap? We got you covered on Android and iOS.
 
 ## Installation
 If you don't have the plugins yet then head over to the [downloads page](https://github.com/betastreet/TapForTap-PhoneGap/downloads) and
-get yourself a zip file.
+get yourself a zip file. The last version to support PhoneGap 1.6.0 is v1.0.2. Current versions support PhoneGap 2.0.
 
 Installing the Tap for Tap plugin is super easy. We'll guide you through it.
 This isn't a PhoneGap tutorial so we assume that you have a PhoneGap project
